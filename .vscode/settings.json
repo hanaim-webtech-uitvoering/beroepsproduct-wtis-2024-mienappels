@@ -1,0 +1,6 @@
+{
+    "svn.ignoreMissingSvnWarning": true,
+    "dataworkspace.excludedProjects": [
+        "wtis/wtis.sqlproj"
+    ]
+}
