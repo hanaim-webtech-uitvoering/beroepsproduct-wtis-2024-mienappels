@@ -35,7 +35,7 @@ function getProducts() {
         $stmt->execute(['type_id' => $type_id]);
         $products = $stmt->fetchAll();
 
-        echo '<h1>Producten van type ' . $type_id . '</h1>';
+        echo '<h1> Product type:' . $type_id . '</h1>';
         echo '<table border="1">';
         echo '<tr><th>Product Name</th><th>Product Price</th><th>Amount</th><th>Add</th></tr>';
         foreach ($products as $product) {
@@ -93,6 +93,46 @@ function getCart() {
     echo '</form>';
 }
 
+function getLoggedInUser()
+{
+    if (isset($_SESSION['username'])) {
+        echo '<h1>Ingelogd als: ' . $_SESSION['username'] . '</h1>';
+        echo '<form action="login-logic.php" method="post">';
+        echo '<input type="hidden" name="Logout">';
+        echo '<input type="submit" name="Logout" value="Logout">';
+        echo '</form>';
+
+        if($_SESSION['role'] == 'Personnel') {
+            echo '<h1>Personnel</h1>';
+            echo '<a href="Personnel.php">Personell page</a>';
+        }
+
+
+    }elseif (!isset($_SESSION['username'])) {
+        echo '<h1>Register</h1>';
+        echo ' <a href="register.php">Register here</a>';
+        echo '<h1>Login</h1>';
+        echo '<a href="login.php">Login here</a>';
+    } 
+}
+
+
+function checkError()
+{
+    if (isset($_GET['error'])) {
+        if ($_GET['error'] == '403') {
+            echo '<p>You tried to access restricted content.</p>';
+        }
+        if ($_GET['error'] == '400l') {
+            echo '<p>Wrong username or password.</p>';
+        }
+        if ($_GET['error'] == '400c') {
+            echo '<p>Something went wrong. Please try again.</p>';
+        }
+    }
+}
+
+
 ?>
 
 
@@ -109,6 +149,8 @@ function getCart() {
 </head>
 <body>
     <?php
+    checkError();
+    getLoggedInUser();
     getProducts();
 
     getCart();

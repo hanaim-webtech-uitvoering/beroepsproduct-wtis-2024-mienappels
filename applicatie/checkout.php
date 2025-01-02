@@ -31,18 +31,13 @@ function getCart() {
 function checkLogIn()
 {
     if (isset($_SESSION['username'])) {
-        echo '<h1>Log in</h1>';
-        echo '<form action="login.php" method="post">';
-        echo '<label for="username">Username:</label>';
-        echo '<input type="text" id="username" name="username">';
-        echo '<label for="password">Password:</label>';
-        echo '<input type="password" id="password"></label>';
-        echo '<input type="submit" value="Log in">';
-        echo '</form>';
+        
     }
     elseif (!isset($_SESSION['username'])) {
         echo '<h1>Register</h1>';
         echo ' <a href="register.php">Register here</a>';
+        echo '<h1>Login</h1>';
+        echo '<a href="login.php">Login here</a>';
     } 
 
     
