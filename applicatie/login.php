@@ -45,6 +45,8 @@ function checkError()
     <title>Document</title>
 </head>
 <body>
+<a href="index.php">Home</a>
+
     <?php
     checkError();
 

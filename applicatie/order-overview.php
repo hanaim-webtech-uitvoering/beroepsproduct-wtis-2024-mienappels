@@ -27,6 +27,8 @@ if(!($_SESSION['role'] == 'Personnel')){
     <title>Document</title>
 </head>
 <body>
+<a href="index.php">Home</a>
+
     <?php
     getLoggedInUser();
     getProducts();
