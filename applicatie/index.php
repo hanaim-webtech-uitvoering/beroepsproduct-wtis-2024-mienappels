@@ -1,5 +1,8 @@
 <?php
 require_once 'db_connectie.php';
+include './functions/error.php';
+
+
 session_start();
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
@@ -117,20 +120,20 @@ function getLoggedInUser()
 }
 
 
-function checkError()
-{
-    if (isset($_GET['error'])) {
-        if ($_GET['error'] == '403') {
-            echo '<p>You tried to access restricted content.</p>';
-        }
-        if ($_GET['error'] == '400l') {
-            echo '<p>Wrong username or password.</p>';
-        }
-        if ($_GET['error'] == '400c') {
-            echo '<p>Something went wrong. Please try again.</p>';
-        }
-    }
-}
+// function checkError()
+// {
+//     if (isset($_GET['error'])) {
+//         if ($_GET['error'] == '403') {
+//             echo '<p>You tried to access restricted content.</p>';
+//         }
+//         if ($_GET['error'] == '400l') {
+//             echo '<p>Wrong username or password.</p>';
+//         }
+//         if ($_GET['error'] == '400c') {
+//             echo '<p>Something went wrong. Please try again.</p>';
+//         }
+//     }
+// }
 
 
 ?>

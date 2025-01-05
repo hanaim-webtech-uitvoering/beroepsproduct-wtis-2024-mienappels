@@ -15,6 +15,16 @@ $db = maakVerbinding();
 //     case Selivered = '4';
 // }
 
+if($_SESSION['role'] == 'Client'){
+    header('Location: index.php?error=403');
+}
+
+if(!($_SESSION['role'] == 'Personnel')){
+    header('Location: index.php?error=403');
+}
+
+
+
 function orderStatus()
 {
     global $db;

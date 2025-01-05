@@ -29,7 +29,7 @@ if (isset($_POST['Logout'])) {
     header('Location: index.php');
 }
 
-// header('Location: login.php?error=403');
+header('Location: login.php?error=403');
 
 ?>
 

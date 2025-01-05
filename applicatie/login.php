@@ -1,6 +1,6 @@
 <?php
 
-
+include './functions/error.php';
 function getLoginForm()
 {
     echo '<h1>Log in</h1>';
@@ -13,20 +13,20 @@ function getLoginForm()
     echo '</br><input type="submit" value="Login">';
 }
 
-function checkError()
-{
-    if (isset($_GET['error'])) {
-        if ($_GET['error'] == '403') {
-            echo '<p>You tried to access restricted content.</p>';
-        }
-        if ($_GET['error'] == '400l') {
-            echo '<p>Wrong username or password.</p>';
-        }
-        if ($_GET['error'] == '400c') {
-            echo '<p>Something went wrong. Please try again.</p>';
-        }
-    }
-}
+// function checkError()
+// {
+//     if (isset($_GET['error'])) {
+//         if ($_GET['error'] == '403') {
+//             echo '<p>You tried to access restricted content.</p>';
+//         }
+//         if ($_GET['error'] == '400l') {
+//             echo '<p>Wrong username or password.</p>';
+//         }
+//         if ($_GET['error'] == '400c') {
+//             echo '<p>Something went wrong. Please try again.</p>';
+//         }
+//     }
+// }
 
 
 ?>

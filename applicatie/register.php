@@ -4,25 +4,26 @@ require_once 'db_connectie.php';
 session_start();
 global $db;
 $db = maakVerbinding();
+include './functions/error.php';
 
 
-function checkError()
-{
-    if (isset($_GET['error'])) {
-        if ($_GET['error'] == '403') {
-            echo '<p>You tried to access restricted content.</p>';
-        }
-        if ($_GET['error'] == '400e') {
-            echo '<p>Emails do not match.</p>';
-        }
-        if ($_GET['error'] == '400p') {
-            echo '<p>Passwords do not match.</p>';
-        }
-        if ($_GET['error'] == '400c') {
-            echo '<p>Something went wrong. Please try again.</p>';
-        }
-    }
-}
+// function checkError()
+// {
+//     if (isset($_GET['error'])) {
+//         if ($_GET['error'] == '403') {
+//             echo '<p>You tried to access restricted content.</p>';
+//         }
+//         if ($_GET['error'] == '400e') {
+//             echo '<p>Emails do not match.</p>';
+//         }
+//         if ($_GET['error'] == '400p') {
+//             echo '<p>Passwords do not match.</p>';
+//         }
+//         if ($_GET['error'] == '400c') {
+//             echo '<p>Something went wrong. Please try again.</p>';
+//         }
+//     }
+// }
 
 function createRegisterForm()
 {
