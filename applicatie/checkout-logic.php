@@ -8,19 +8,22 @@ var_dump($_SESSION);
 var_dump($_POST);
 
 
-if($_SESSION['role'] == 'Client'){
+$username = $_POST['username'];
 
-    $query = 'select * from "User" where role = Personnel';
+
+
+if($_SESSION['role'] == 'Client'){
+    $query = 'select username from "User" where role = :role';
     $stmt = $db->prepare($query);
-    $stmt->execute();
-    $personnel = $stmt->fetch();
+    $stmt->execute(['role' => 'Personnel']);
+    $personnel = $stmt->fetchAll();
     $personnel_amount = sizeof($personnel);
-    $random_personnel = rand(0, $personnel_amount);
+    $random_personnel = rand(0, $personnel_amount - 1);
     $personnel_username = $personnel[$random_personnel]['username'];
 
     $query = 'insert into Pizza_order (client_username, client_name, personnel_username, datetime, status, address) values (:client_username, :client_name, :personnel_username, :datetime, :status, :address)';
     $data_array = [
-        'client_username' => $_SESSION['username'],
+        'client_username' => $username,
         'client_name' => $_SESSION['first_name'] . ' ' . $_SESSION['last_name'],
         'personnel_username' => $personnel_username,
         'datetime' => date('Y-m-d H:i:s'),

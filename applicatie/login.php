@@ -6,10 +6,10 @@ function getLoginForm()
     echo '<h1>Log in</h1>';
     echo '<form action="login-logic.php" method="post">';
     echo '<label for="username">Username:</label>';
-    echo '<input type="text" id="username" name="username"></br>';
+    echo '<input type="text" id="username" name="username" required ></br>';
     echo '<label for="password">Password:</label>';
-    echo '<input type="password" id="password" name="password">';
-    echo '<input type="hidden" name="Login">';
+    echo '<input type="password" id="password" name="password" required >';
+    echo '<input type="hidden" name="Login" required >';
     echo '</br><input type="submit" value="Login">';
 }
 

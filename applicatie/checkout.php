@@ -66,12 +66,10 @@ function placeOrder(){
         echo '<input type="text" required name="name" value="' . $user['first_name'] . ' ' . $user['last_name'] . '">';
         echo '</br>';
 
-        echo '<label for="fill">Address zelf invullen:</label>';
-        echo '<input type="radio" required id="fill" name="address" value="work">';
-        echo '<input type="text" name="address" placeholder="Address">';
-        echo '</br>';
-        echo '<label for="notfill">Address gebruiken van account:</label>';
-        echo '<input type="radio" required  id="notfill"name="address" value="home">';
+        echo '<label for="fill">Address:</label>';
+
+        // echo '<input type="text" name="address" placeholder="Address">';
+        echo '<input type="text" required name="address" value="' . $user['address'] . '">';
         echo '</br>';
         echo '<input type="submit" name="checkout" value="Checkout">';
 
