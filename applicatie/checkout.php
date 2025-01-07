@@ -38,6 +38,13 @@ function checkLogIn()
         echo ' <a href="register.php">Register here</a>';
         echo '<h1>Login</h1>';
         echo '<a href="login.php">Login here</a>';
+        echo '</br>';
+        echo '</br>';
+        echo '</br>';
+        echo '</br>';
+        echo '</br>';
+
+        echo '<div>or continue without logging in:</div>';
     } 
 
     
@@ -45,6 +52,46 @@ function checkLogIn()
 
 
 function placeOrder(){
+    global $db;
+
+    // echo '<a href="checkout-logic.php">checkout</a>';
+    echo '<form action="checkout-logic.php" method="post">';
+
+    if(isset($_SESSION['role']) && ($_SESSION['role'] == 'Client')){
+        $query = 'select * from "User" where username = :username';
+        $stmt = $db->prepare($query);
+        $stmt->execute(['username' => $_SESSION['username']]);
+        $user = $stmt->fetch();
+        echo '<label for ="name">Name:</label>';
+        echo '<input type="text" required name="name" value="' . $user['first_name'] . ' ' . $user['last_name'] . '">';
+        echo '</br>';
+
+        echo '<label for="fill">Address zelf invullen:</label>';
+        echo '<input type="radio" required id="fill" name="address" value="work">';
+        echo '<input type="text" name="address" placeholder="Address">';
+        echo '</br>';
+        echo '<label for="notfill">Address gebruiken van account:</label>';
+        echo '<input type="radio" required  id="notfill"name="address" value="home">';
+        echo '</br>';
+        echo '<input type="submit" name="checkout" value="Checkout">';
+
+    } else {
+        echo '<label for ="name">Name:</label>';
+        echo '<input type="text" required  name="name" placeholder="Name">';
+        echo '</br>';
+
+        echo '<label for="fill">Address:</label>';
+        echo '<input type="text" required name="address" placeholder="Address">';
+        echo '</br>'; 
+        echo '<input type="submit" name="checkout" value="Checkout">';
+
+    }
+    
+
+
+
+
+
 
 
 }
