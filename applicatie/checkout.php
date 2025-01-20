@@ -3,6 +3,8 @@ require_once 'db_connectie.php';
 session_start();
 global $db; 
 $db = maakVerbinding();
+include './functions/error.php';
+
 
 function getCart() {
     global $db;
@@ -44,7 +46,7 @@ function checkLogIn()
         echo '</br>';
         echo '</br>';
 
-        echo '<div>or continue without logging in:</div>';
+        // echo '<div>or continue without logging in:</div>'; //* Zie line 78
     } 
 
     
@@ -57,7 +59,7 @@ function placeOrder(){
     // echo '<a href="checkout-logic.php">checkout</a>';
     echo '<form action="checkout-logic.php" method="post">';
 
-    if(isset($_SESSION['role']) && ($_SESSION['role'] == 'Client')){
+    if (isset($_SESSION['role'])) {
         $query = 'select * from "User" where username = :username';
         $stmt = $db->prepare($query);
         $stmt->execute(['username' => $_SESSION['username']]);
@@ -72,18 +74,18 @@ function placeOrder(){
         echo '<input type="text" required name="address" value="' . $user['address'] . '">';
         echo '</br>';
         echo '<input type="submit" name="checkout" value="Checkout">';
-
-    } else {
-        echo '<label for ="name">Name:</label>';
-        echo '<input type="text" required  name="name" placeholder="Name">';
-        echo '</br>';
-
-        echo '<label for="fill">Address:</label>';
-        echo '<input type="text" required name="address" placeholder="Address">';
-        echo '</br>'; 
-        echo '<input type="submit" name="checkout" value="Checkout">';
-
     }
+    //  else { //* Code voor een implementatie zonder inloggen alleen de foreign key op username maakt dat nu lastig
+    //     echo '<label for ="name">Name:</label>';
+    //     echo '<input type="text" required  name="name" placeholder="Name">';
+    //     echo '</br>';
+
+    //     echo '<label for="fill">Address:</label>';
+    //     echo '<input type="text" required name="address" placeholder="Address">';
+    //     echo '</br>'; 
+    //     echo '<input type="submit" name="checkout" value="Checkout">';
+
+    // }
     
 
 
@@ -108,7 +110,8 @@ function placeOrder(){
 </head>
 <body>
 <a href="index.php">Home</a>
-    <?php 
+    <?php
+    checkError();
     getCart();
     checkLogIn();
     placeOrder();

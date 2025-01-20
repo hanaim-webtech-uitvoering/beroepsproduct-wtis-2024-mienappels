@@ -110,6 +110,8 @@ function getLoggedInUser()
             echo '<a href="Personnel.php">Personell page</a>';
         }
 
+        if
+
 
     }elseif (!isset($_SESSION['username'])) {
         echo '<h1>Register</h1>';

@@ -6,6 +6,7 @@ global $db;
 $db = maakVerbinding();
 
 
+
 // //! https://www.php.net/manual/en/backedenum.from.php voor casting
 // //! https://www.php.net/manual/en/language.types.enumerations.php
 // enum Status: string {
@@ -23,17 +24,38 @@ if(!($_SESSION['role'] == 'Personnel')){
     header('Location: index.php?error=403');
 }
 
+if(isset($_POST['update'])){
+    $order_id = $_POST['order_id'];
+    $status = $_POST['status'];
+    $query = 'UPDATE Pizza_Order SET status = :status WHERE order_id = :order_id';
+    $stmt = $db->prepare($query);
+    $stmt->execute(['status' => $status, 'order_id' => $order_id]);
+}
+
 
 
 function orderStatus()
 {
+
+    if(!isset($_SESSION['showDelivered'])){
+        $_SESSION['showDelivered'] = 0;
+    }
+
+    if(isset($_POST['showDelivered'])){
+        $_SESSION['showDelivered'] = !$_SESSION['showDelivered'];
+    }
+
+
     global $db;
-    $query = 'SELECT * FROM Pizza_Order';
+    $query = 'select * from Pizza_Order' . ($_SESSION['showDelivered'] ? '' : ' where status != 3') . ' order by datetime, status desc'; // ik haat tertiary operators maar hier moest het voor ruimte efficiency
     $stmt = $db->prepare($query);
     $stmt->execute();
     $orders = $stmt->fetchAll();
 
     echo '<h1> Order Status </h1>';
+    echo '<form action="./Personnel.php" method="post">';
+    echo '<input type="submit" name="showDelivered" value="Toggle showing delivered">';
+    echo '</form>';
     echo '<table border="1">';
     echo '<tr><th>Order ID</th><th>Order Date</th><th>Address</th><th>Client Name</th><th>Personnel assigned</th><th>Order Status</th><th>Order Details</th></tr>';
     foreach($orders as $order){
@@ -44,25 +66,29 @@ function orderStatus()
         echo '<td>' . $order['client_name'] . '</td>';
         echo '<td>' . $order['personnel_username'] . '</td>';
 
-        // echo '<td>' . Status::from($order['status']) . '</td>';
 
-        switch ($order['status']) {
-            case '0':
-                echo '<td>Received</td>';
-                break;
-            case '1':
-                echo '<td>Prep</td>';
-                break;
-            case '2':
-                echo '<td>Ready</td>';
-                break;
-            case '3':
-                echo '<td>Delivered</td>';
-                break;
-            default:
-                echo '<td>Unknown</td>';
-                break;
+        echo '<td>';
+        echo '<form action="./Personnel.php" method="post">';
+        echo '<input type="hidden" name="order_id" value="' . $order['order_id'] . '">';
+        echo '<select name="status" >';
+        $statuses = [
+            '0' => 'Received',
+            '1' => 'Prep',
+            '2' => 'Ready',
+            '3' => 'Delivered'
+        ];
+
+        foreach ($statuses as $value => $label) {
+            $selected = '';
+            if ($order['status'] == $value) {
+            $selected = 'selected';
+            }
+            echo "<option value=\"$value\" $selected>$label</option>";
         }
+
+        echo '</select>';
+        echo '<input type="submit" name="update" value="update">';
+        echo '</form>';
 
             $query = 'SELECT * FROM Pizza_Order_Product WHERE order_id = :order_id';
             $stmt = $db->prepare($query);
@@ -80,6 +106,14 @@ function orderStatus()
             }
             echo '</table>';
             echo '</td>';
+
+
+            
+
+
+
+
+
         
         echo '</tr>';
 
@@ -88,6 +122,8 @@ function orderStatus()
 
 
 }
+
+
 
 ?>
 
@@ -101,7 +137,6 @@ function orderStatus()
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
