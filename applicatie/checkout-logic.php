@@ -99,3 +99,13 @@ foreach ($_SESSION['cart'] as $product_name => $amount) {
     $stmt = $db->prepare($query);
     $stmt->execute($data_array);
 }
+
+if(isset($_SESSION['cart'])){
+    unset($_SESSION['cart']);
+}
+
+if($_SESSION['role'] == 'Client'){
+    header('Location: profiel.php');
+} else {
+    header('Location: Personnel.php');
+}

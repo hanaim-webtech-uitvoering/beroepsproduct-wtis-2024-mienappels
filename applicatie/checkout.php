@@ -22,8 +22,8 @@ function getCart() {
         $total += $product['price'] * $amount;
         echo '<tr>';
         echo '<td>' . $product_name . '</td>';
-        echo '<td>' . $product['price'] . '</td>';
-        echo '<td>' . $product['price'] * $amount . '</td>';
+        echo '<td>€' . $product['price'] . '</td>';
+        echo '<td>€' . $product['price'] * $amount . '</td>';
         echo '<td>' . $amount . '</td>';
     }
     echo '<tr><td colspan="3">Total</td><td>' . $total . '</td></tr>';

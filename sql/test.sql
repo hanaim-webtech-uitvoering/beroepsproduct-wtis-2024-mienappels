@@ -18,4 +18,6 @@ delete from Pizza_Order where address is NULL
 
 select * from Pizza_Order where status = 1
 select * from Pizza_Order_Product
+
+SELECT * FROM Pizza_Order_Product inner join Product on Pizza_Order_Product.product_name = Product.name
 -- select name, price from Product where type_id = Drank

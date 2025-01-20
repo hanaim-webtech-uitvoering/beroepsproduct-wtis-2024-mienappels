@@ -45,7 +45,7 @@ function getProducts() {
             echo '<tr>';
             echo '<form action="index.php" method="post">';
             echo '<td>' . $product['name'] . '</td>';
-            echo '<td>' . $product['price'] . '</td>';
+            echo '<td>€' . $product['price'] . '</td>';
             echo '<td><input type="number" name="amount" value="0" min="0"></td>';
             echo '<input type="hidden" name="product_name" value="' . $product['name'] . '">';
             echo '<td><input type="submit" name="add" value="Add"></td>';
@@ -80,13 +80,13 @@ function getCart() {
         $total += $product['price'] * $amount;
         echo '<tr>';
         echo '<td>' . $product_name . '</td>';
-        echo '<td>' . $product['price'] . '</td>';
-        echo '<td>' . $product['price'] * $amount . '</td>';
+        echo '<td>€' . $product['price'] . '</td>';
+        echo '<td>€' . $product['price'] * $amount . '</td>';
         echo '<td>' . $amount . '</td>';
         echo '<td><form action="index.php" method="post"><input type="submit" name="remove" value="Remove 1"><input type="hidden" name="amount" value="-1"><input type="hidden" name="product_name" value="' . $product_name . '"></form></td>';
         echo '<td><form action="index.php" method="post"><input type="submit" name="add" value="Add 1"><input type="hidden" name="amount" value="1"><input type="hidden" name="product_name" value="' . $product_name . '"></form></td>';
     }
-    echo '<tr><td colspan="3">Total</td><td>' . $total . '</td></tr>';
+    echo '<tr><td colspan="3">Total</td><td>€' . $total . '</td></tr>';
     echo '</table>';
     echo '<form action="index.php" method="post">';
     echo '<input type="submit" name="empty" value="Empty Cart">';
@@ -110,7 +110,10 @@ function getLoggedInUser()
             echo '<a href="Personnel.php">Personell page</a>';
         }
 
-        if
+        if($_SESSION['role'] == 'Client') {
+            echo '<h1>Profile</h1>';
+            echo '<a href="profiel.php">Profile Page</a>';
+        }
 
 
     }elseif (!isset($_SESSION['username'])) {
