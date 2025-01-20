@@ -35,11 +35,15 @@ function orderStatus()
 
     echo '<h1> Order Status </h1>';
     echo '<table border="1">';
-    echo '<tr><th>Order ID</th><th>Order Date</th><th>Order Status</th><th>Order Details</th></tr>';
+    echo '<tr><th>Order ID</th><th>Order Date</th><th>Address</th><th>Client Name</th><th>Personnel assigned</th><th>Order Status</th><th>Order Details</th></tr>';
     foreach($orders as $order){
         echo '<tr>';
         echo '<td>' . $order['order_id'] . '</td>';
         echo '<td>' . $order['datetime'] . '</td>';
+        echo '<td>' . $order['address'] . '</td>';
+        echo '<td>' . $order['client_name'] . '</td>';
+        echo '<td>' . $order['personnel_username'] . '</td>';
+
         // echo '<td>' . Status::from($order['status']) . '</td>';
 
         switch ($order['status']) {
