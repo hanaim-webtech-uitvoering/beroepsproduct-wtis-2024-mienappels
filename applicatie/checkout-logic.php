@@ -8,8 +8,8 @@ var_dump($_SESSION);
 var_dump($_POST);
 
 
-$username = $_POST['name'];
-$address = $_POST['address'];
+$username = htmlspecialchars($_POST['name']);
+$address = htmlspecialchars($_POST['address']);
 
 
 

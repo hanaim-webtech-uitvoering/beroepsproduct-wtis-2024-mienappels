@@ -11,7 +11,7 @@ if (isset($_POST['add']) || isset($_POST['remove'])) {
     if ($_POST['amount'] != 0) {
         $amount = $_POST['amount'];
         $product_name = 0;
-        $product_name = $_POST['product_name'];
+        $product_name = htmlspecialchars($_POST['product_name']);
         if (!isset($_SESSION['cart'][$product_name])) {
             $_SESSION['cart'][$product_name] = 0;
         }

@@ -6,8 +6,8 @@ global $db;
 $db = maakVerbinding();
 
 if (isset($_POST['Login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
     $query = 'SELECT * FROM "User" WHERE username = :username';
     $stmt = $db->prepare($query);
     $data_array = [

@@ -25,8 +25,8 @@ if(!($_SESSION['role'] == 'Personnel')){
 }
 
 if(isset($_POST['update'])){
-    $order_id = $_POST['order_id'];
-    $status = $_POST['status'];
+    $order_id = htmlspecialchars($_POST['order_id']);
+    $status = htmlspecialchars($_POST['status']);
     $query = 'UPDATE Pizza_Order SET status = :status WHERE order_id = :order_id';
     $stmt = $db->prepare($query);
     $stmt->execute(['status' => $status, 'order_id' => $order_id]);
