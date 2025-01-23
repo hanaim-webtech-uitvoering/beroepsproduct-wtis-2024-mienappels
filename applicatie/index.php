@@ -18,17 +18,18 @@ if (isset($_POST['add']) || isset($_POST['remove'])) {
             $_SESSION['cart'][$product_name] = 0;
         }
         $_SESSION['cart'][$product_name] += $amount;
-    } 
+    }
 }
 
 if (isset($_POST['empty'])) {
     $_SESSION['cart'] = [];
 }
 
-global $db; 
+global $db;
 $db = maakVerbinding();
 
-function getProducts() {
+function getProducts()
+{
     global $db;
     $query = 'SELECT type_id FROM Product GROUP BY type_id';
     $data = $db->query($query);
@@ -51,17 +52,18 @@ function getProducts() {
             echo '<td><input type="number" name="amount" value="0" min="0"></td>';
             echo '<input type="hidden" name="product_name" value="' . $product['name'] . '">';
             echo '<td><input type="submit" name="add" value="Add"></td>';
-            echo '</form>'; 
+            echo '</form>';
             echo '</tr>';
         }
-        
+
         echo '</table>';
-        }
-        echo '</form>';
+    }
+    echo '</form>';
 }
 
 
-function getCart() {
+function getCart()
+{
     global $db;
     $cart = $_SESSION['cart'];
     $total = 0;
@@ -70,7 +72,7 @@ function getCart() {
     echo '<table border="1">';
     echo '<tr><th>Product Name</th><th>Product Price</th><th>Amount</th><th>Total Price</th><th>Remove 1</th><th>Add 1</th></tr>';
     foreach ($cart as $product_name => $amount) {
-        if($amount <= 0) {
+        if ($amount <= 0) {
             unset($_SESSION['cart'][$product_name]);
             continue;
         }
@@ -106,23 +108,21 @@ function getLoggedInUser()
         echo '<input type="submit" name="Logout" value="Logout">';
         echo '</form>';
 
-        if(checkIfPersonnel()) {
+        if (checkIfPersonnel()) {
             echo '<h1>Personnel</h1>';
             echo '<a href="Personnel.php">Personell page</a>';
         }
 
-        if(checkIfClient()) {
+        if (checkIfClient()) {
             echo '<h1>Profile</h1>';
             echo '<a href="profiel.php">Profile Page</a>';
         }
-
-
-    }elseif (!isset($_SESSION['username'])) {
+    } elseif (!isset($_SESSION['username'])) {
         echo '<h1>Register</h1>';
         echo ' <a href="register.php">Register here</a>';
         echo '<h1>Login</h1>';
         echo '<a href="login.php">Login here</a>';
-    } 
+    }
 }
 
 
@@ -149,7 +149,7 @@ function getLoggedInUser()
 
 
     <?php
-        getHeader("Home");
+    getHeader("Home");
 
     checkError();
     getLoggedInUser();

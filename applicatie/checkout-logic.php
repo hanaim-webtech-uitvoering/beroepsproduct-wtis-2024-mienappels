@@ -100,11 +100,11 @@ foreach ($_SESSION['cart'] as $product_name => $amount) {
     $stmt->execute($data_array);
 }
 
-if(isset($_SESSION['cart'])){
+if (isset($_SESSION['cart'])) {
     unset($_SESSION['cart']);
 }
 
-if($_SESSION['role'] == 'Client'){
+if ($_SESSION['role'] == 'Client') {
     header('Location: profiel.php');
 } else {
     header('Location: Personnel.php');

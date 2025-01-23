@@ -1,6 +1,7 @@
 <?php
 
-function getHeader($pagetitle){
+function getHeader($pagetitle)
+{
 
     echo <<<HTML
 <!DOCTYPE html>
@@ -13,11 +14,11 @@ function getHeader($pagetitle){
 <body>
 <a href="index.php">Home</a>
 HTML;
-
 }
 
 
-function getFooter(){
+function getFooter()
+{
 
     echo <<<HTML
     <div>Footer:</div>

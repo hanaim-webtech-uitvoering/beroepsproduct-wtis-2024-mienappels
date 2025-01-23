@@ -46,7 +46,7 @@ function createRegisterForm()
     echo '<input type="password" id="password" minlength="8" name="password"><br>';
     // echo '<label for=password-confirm>Confirm Password:</label>';
     // echo '<input type="password" id="password-confirm" minlength="8" name="password-confirm"><br>';
-    
+
     echo '<input type="hidden" name="Register">';
 
     echo '<input type="submit" value="register"><br>';
@@ -57,7 +57,7 @@ function createRegisterForm()
 
 
     <?php
-        getHeader('Register');
+    getHeader('Register');
 
     checkError();
     createRegisterForm();

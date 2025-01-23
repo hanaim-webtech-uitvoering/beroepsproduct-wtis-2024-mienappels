@@ -6,7 +6,7 @@ global $db;
 $db = maakVerbinding();
 
 //! @todo check if user is reaching this page through the register form
-if (!isset($_POST['Register'])){
+if (!isset($_POST['Register'])) {
     // $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; // https://stackoverflow.com/questions/6768793/get-the-full-url-in-php
     header('Location: register.php?error=403');
 }
@@ -21,11 +21,11 @@ $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 // $password_confirm = password_hash($_POST['password-confirm'], PASSWORD_DEFAULT);
 
 // if ($email != $email_confirm) {
-    // header('Location: register.php?error=400e');
+// header('Location: register.php?error=400e');
 // }
 
 // if ($password != $password_confirm) {
-    // header('Location: register.php?error=400p');
+// header('Location: register.php?error=400p');
 // }
 
 $query = 'INSERT INTO "User" (username, first_name, last_name, address, password, role) VALUES (:username, :first_name, :last_name, :address, :password, :role)';
@@ -48,5 +48,3 @@ if (!$succes) {
 
 
 header('Location: login.php');
-
-?>

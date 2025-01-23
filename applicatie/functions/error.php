@@ -21,10 +21,3 @@ function checkError()
         }
     }
 }
-
-
-
-
-
-?>
-

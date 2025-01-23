@@ -1,5 +1,6 @@
 <?php
-function showOrder($order){
+function showOrder($order)
+{
     global $db;
     echo '<tr>';
 
@@ -35,7 +36,7 @@ function showOrder($order){
     foreach ($statuses as $value => $label) {
         $selected = '';
         if ($order['status'] == $value) {
-        $selected = 'selected';
+            $selected = 'selected';
         }
         echo "<option value=\"$value\" $selected>$label</option>";
     }
@@ -44,33 +45,30 @@ function showOrder($order){
     echo '<input type="submit" name="update" value="update">';
     echo '</form>';
 
-        $query = 'SELECT * FROM Pizza_Order_Product WHERE order_id = :order_id';
-        $stmt = $db->prepare($query);
-        $stmt->execute(['order_id' => $order['order_id']]);
-        $order_details = $stmt->fetchAll();
+    $query = 'SELECT * FROM Pizza_Order_Product WHERE order_id = :order_id';
+    $stmt = $db->prepare($query);
+    $stmt->execute(['order_id' => $order['order_id']]);
+    $order_details = $stmt->fetchAll();
 
-        echo '<td>';
-        echo '<table border="1">';
-        echo '<tr><th>Product Name</th><th>Amount</th></tr>';
-        foreach($order_details as $order_detail){
-            echo '<tr>';
-            echo '<td>' . $order_detail['product_name'] . '</td>';
-            echo '<td>' . $order_detail['quantity'] . '</td>';
-            echo '</tr>';
-        }
-        echo '</table>';
-        echo '</td>';
-
-
-        
+    echo '<td>';
+    echo '<table border="1">';
+    echo '<tr><th>Product Name</th><th>Amount</th></tr>';
+    foreach ($order_details as $order_detail) {
+        echo '<tr>';
+        echo '<td>' . $order_detail['product_name'] . '</td>';
+        echo '<td>' . $order_detail['quantity'] . '</td>';
+        echo '</tr>';
+    }
+    echo '</table>';
+    echo '</td>';
 
 
 
 
 
-    
+
+
+
+
     echo '</tr>';
-
-
-
 }

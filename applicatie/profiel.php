@@ -1,12 +1,13 @@
 <?php
 require_once './functions/db_connectie.php';
 include './functions/error.php';
-global $db; 
+global $db;
 $db = maakVerbinding();
 session_start();
 include './functions/header_footer.php';
 
-function getOrders(){
+function getOrders()
+{
 
     global $db;
     $query = 'SELECT * FROM Pizza_Order where client_username = :username';
@@ -17,7 +18,7 @@ function getOrders(){
     echo '<h1> Orders </h1>';
     echo '<table border="1">';
     echo '<tr><th>Order ID</th><th>Order Date</th><th>Order Status</th><th>Items</th><th>Total Price</th></tr>';
-    foreach($orders as $order){
+    foreach ($orders as $order) {
         echo '<tr>';
         echo '<td>' . $order['order_id'] . '</td>';
         echo '<td>' . $order['datetime'] . '</td>';
@@ -56,7 +57,7 @@ function getOrders(){
         echo '<td>';
         echo '<table border="1">';
         echo '<tr><th>Product Name</th><th>Amount</th></tr>';
-        foreach($order_details as $order_detail){
+        foreach ($order_details as $order_detail) {
             echo '<tr>';
             echo '<td>' . $order_detail['product_name'] . '</td>';
             echo '<td>' . $order_detail['quantity'] . '</td>';
@@ -66,19 +67,13 @@ function getOrders(){
         echo '</table>';
         echo '</td>';
         echo '<td>€' . $total . '</td>';
-        
 
-    
 
-        
+
+
+
         echo '</tr>';
-
-        
-
     }
-    
-  
-
 }
 
 

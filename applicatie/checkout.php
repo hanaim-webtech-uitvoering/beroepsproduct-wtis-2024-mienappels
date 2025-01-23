@@ -1,12 +1,13 @@
 <?php
 require_once './functions/db_connectie.php';
 session_start();
-global $db; 
+global $db;
 $db = maakVerbinding();
 include './functions/error.php';
 include './functions/header_footer.php';
 
-function getCart() {
+function getCart()
+{
     global $db;
     $cart = $_SESSION['cart'];
     $total = 0;
@@ -33,9 +34,7 @@ function getCart() {
 function checkLogIn()
 {
     if (isset($_SESSION['username'])) {
-        
-    }
-    elseif (!isset($_SESSION['username'])) {
+    } elseif (!isset($_SESSION['username'])) {
         echo '<h1>Register</h1>';
         echo ' <a href="register.php">Register here</a>';
         echo '<h1>Login</h1>';
@@ -47,13 +46,12 @@ function checkLogIn()
         echo '</br>';
 
         // echo '<div>or continue without logging in:</div>'; //* Zie line 78
-    } 
-
-    
+    }
 }
 
 
-function placeOrder(){
+function placeOrder()
+{
     global $db;
 
     // echo '<a href="checkout-logic.php">checkout</a>';
@@ -86,7 +84,7 @@ function placeOrder(){
     //     echo '<input type="submit" name="checkout" value="Checkout">';
 
     // }
-    
+
 
 
 
