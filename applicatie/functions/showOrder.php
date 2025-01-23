@@ -7,6 +7,7 @@ function showOrder($order){
     echo '<form action="./detail-personnel.php" method="post">';
     echo '<input type="hidden" name="orderid" value="' . $order['order_id'] . '">';
     echo '<td><input type="submit" value="' . $order['order_id'] . '"></td>';
+    echo '</form>';
 
 
 

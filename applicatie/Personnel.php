@@ -6,6 +6,7 @@ global $db;
 $db = maakVerbinding();
 include './functions/header_footer.php';
 include './functions/showOrder.php';
+include './functions/checks.php';
 
 // //! https://www.php.net/manual/en/backedenum.from.php voor casting
 // //! https://www.php.net/manual/en/language.types.enumerations.php
@@ -16,11 +17,11 @@ include './functions/showOrder.php';
 //     case Selivered = '4';
 // }
 
-if($_SESSION['role'] == 'Client'){
+if(checkIfClient()){
     header('Location: index.php?error=403');
 }
 
-if(!($_SESSION['role'] == 'Personnel')){
+if(!checkIfPersonnel()){
     header('Location: index.php?error=403');
 }
 

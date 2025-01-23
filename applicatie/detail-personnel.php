@@ -5,23 +5,32 @@ global $db;
 $db = maakVerbinding();
 include './functions/header_footer.php';
 include './functions/showOrder.php';
+include './functions/checks.php';
 
+
+function checkOrderValidity(){
+    global $db;
 $query = 'SELECT * FROM Pizza_Order';
 $stmt = $db->prepare($query);
 $stmt->execute();
 $orders = $stmt->fetchAll();
 
-$_POST['orderid'] = htmlspecialchars($_POST['orderid']); // too check if the order id is valid
-$orderValid = false;
-foreach ($orders as $order) {
-    if ($order['order_id'] == $_POST['orderid']) {
-        $orderValid = true;
+    $_POST['orderid'] = htmlspecialchars($_POST['orderid']); // too check if the order id is valid
+    $orderValid = false;
+    foreach ($orders as $order) {
+        if ($order['order_id'] == $_POST['orderid']) {
+            $orderValid = true;
+        }
     }
+    return $orderValid;
+}
+
+function checkReturnPage(){
+return $_SERVER['HTTP_REFERER'] == 'http://localhost:8080/Personnel.php' || $_SERVER['HTTP_REFERER'] == 'http://localhost:8080/detail-personnel.php';
 }
 
 
-
-if(!isset($_POST['orderid']) || $_SESSION['role'] != 'Personnel'|| !$orderValid || !($_SERVER['HTTP_REFERER'] == 'http://localhost:8080/Personnel.php' || $_SERVER['HTTP_REFERER'] == 'http://localhost:8080/detail-personnel.php')){
+if(!isset($_POST['orderid']) || !checkIfPersonnel()|| !checkOrderValidity() || !checkReturnPage()){
     header('Location: index.php?error=403');
 }
 

@@ -2,6 +2,7 @@
 require_once './functions/db_connectie.php';
 include './functions/error.php';
 include './functions/header_footer.php';
+include './functions/checks.php';
 
 
 session_start();
@@ -105,12 +106,12 @@ function getLoggedInUser()
         echo '<input type="submit" name="Logout" value="Logout">';
         echo '</form>';
 
-        if($_SESSION['role'] == 'Personnel') {
+        if(checkIfPersonnel()) {
             echo '<h1>Personnel</h1>';
             echo '<a href="Personnel.php">Personell page</a>';
         }
 
-        if($_SESSION['role'] == 'Client') {
+        if(checkIfClient()) {
             echo '<h1>Profile</h1>';
             echo '<a href="profiel.php">Profile Page</a>';
         }
