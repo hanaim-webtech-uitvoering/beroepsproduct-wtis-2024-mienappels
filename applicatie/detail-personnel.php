@@ -21,7 +21,7 @@ foreach ($orders as $order) {
 
 
 
-if(!isset($_POST['orderid']) || $_SESSION['role'] != 'Personnel'|| !$orderValid || !($_SERVER['HTTP_REFERER'] == 'http://localhost:8080/Personnel.php')){
+if(!isset($_POST['orderid']) || $_SESSION['role'] != 'Personnel'|| !$orderValid || !($_SERVER['HTTP_REFERER'] == 'http://localhost:8080/Personnel.php' || $_SERVER['HTTP_REFERER'] == 'http://localhost:8080/detail-personnel.php')){
     header('Location: index.php?error=403');
 }
 
