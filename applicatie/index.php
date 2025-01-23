@@ -1,6 +1,7 @@
 <?php
 require_once 'db_connectie.php';
 include './functions/error.php';
+include './functions/header_footer.php';
 
 
 session_start();
@@ -147,23 +148,14 @@ function getLoggedInUser()
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-</head>
-<body>
-<a href="index.php">Home</a>
-
     <?php
+        getHeader('checkout');
+
     checkError();
     getLoggedInUser();
     getProducts();
 
     getCart();
+    getFooter();
+
     ?>
-</body>
-</html>

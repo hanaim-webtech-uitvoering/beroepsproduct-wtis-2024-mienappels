@@ -4,7 +4,7 @@ session_start();
 global $db; 
 $db = maakVerbinding();
 include './functions/error.php';
-
+include './functions/header_footer.php';
 
 function getCart() {
     global $db;
@@ -100,21 +100,13 @@ function placeOrder(){
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-</head>
-<body>
-<a href="index.php">Home</a>
+
     <?php
+    getHeader('checkout');
     checkError();
     getCart();
     checkLogIn();
     placeOrder();
+    getFooter();
     ?>
-</body>
-</html>
+
