@@ -41,7 +41,7 @@ function getLoginForm()
 
 
     <?php
-        getHeader('checkout');
+        getHeader('Login');
 
     checkError();
 

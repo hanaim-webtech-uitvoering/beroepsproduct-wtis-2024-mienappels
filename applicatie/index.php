@@ -1,5 +1,5 @@
 <?php
-require_once 'db_connectie.php';
+require_once './functions/db_connectie.php';
 include './functions/error.php';
 include './functions/header_footer.php';
 
@@ -53,7 +53,6 @@ function getProducts() {
             echo '</form>'; 
             echo '</tr>';
         }
-        //submit button
         
         echo '</table>';
         }
@@ -149,7 +148,7 @@ function getLoggedInUser()
 
 
     <?php
-        getHeader('checkout');
+        getHeader("Home");
 
     checkError();
     getLoggedInUser();

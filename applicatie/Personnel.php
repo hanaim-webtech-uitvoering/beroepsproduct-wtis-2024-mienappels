@@ -1,6 +1,6 @@
 <?php
 
-require_once 'db_connectie.php';
+require_once './functions/db_connectie.php';
 session_start();
 global $db;
 $db = maakVerbinding();
@@ -135,7 +135,7 @@ function orderStatus()
 
 
     <?php
-        getHeader('checkout');
+        getHeader('Personnel Page');
 
     orderStatus();
     getFooter();

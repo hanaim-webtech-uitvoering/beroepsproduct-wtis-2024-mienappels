@@ -1,5 +1,5 @@
 <?php
-require_once 'db_connectie.php';
+require_once './functions/db_connectie.php';
 include './functions/error.php';
 global $db; 
 $db = maakVerbinding();
@@ -91,7 +91,7 @@ function getOrders(){
 
 
     <?php
-    getHeader('checkout');
+    getHeader('Profile');
 
     getOrders();
 
